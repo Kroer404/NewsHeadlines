@@ -13,9 +13,9 @@ import {NList, NListItem} from 'naive-ui'
 
 export default class NewsList extends Vue {
   private newsData: any[] = [
-    {id: "1", title: "111"},
-    {id: "2", title: "222"},
-    {id: "3", title: "333"},
+    {id: "1", title: "取消新能源车限购、提高节能率……这样做好节能降碳"},
+    {id: "2", title: "秸秆经纪人、智能化新农机 今年夏收有何不同？"},
+    {id: "3", title: "瑞典将仅有两架预警机援乌 本国空中警戒能力大幅削弱"},
     {id: "4", title: "444"},
     {id: "5", title: "555"},
     {id: "6", title: "666"},
