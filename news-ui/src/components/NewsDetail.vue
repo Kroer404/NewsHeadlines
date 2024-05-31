@@ -1,20 +1,25 @@
 <script lang="ts">
 import {Options, Vue} from "vue-class-component"
 import {NButton, NCard} from 'naive-ui'
+
 @Options({
   components: {
     NButton,
     NCard,
-  }
+  },
 })
+
 export default class NewsDetail extends Vue {
+  goBack() {
+    this.$router.go(-1)
+  }
 }
 </script>
 
 <template>
   <div class="news-detail">
-    <n-button>Back</n-button>
-    <n-card title="111" embedded :bordered="false">
+    <n-button @click="goBack()">Back</n-button>
+    <n-card :bordered="false" embedded title="111">
       <p>2022-02-10 11:00</p>
       <p>
         内容尼尔尼尔大学覅还是的风景
