@@ -1,21 +1,19 @@
 <template>
-  <!--<n-button>n-button</n-button>-->
-  <news-list></news-list>
+  <div class="content">
+    <router-view/>
+  </div>
 </template>
 
 <script lang="ts">
-import {Options, Vue} from 'vue-class-component';
+import {Vue} from 'vue-class-component';
 import {NButton} from 'naive-ui'
 import NewsList from "@/components/NewsList.vue";
+import NewsDetail from "@/components/NewsDetail.vue";
 
-@Options({
-  components: {
-    NewsList,
-    NButton,
-  },
-})
 export default class App extends Vue {
 }
+
+
 </script>
 
 <style>

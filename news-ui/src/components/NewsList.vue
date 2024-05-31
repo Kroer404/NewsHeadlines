@@ -30,7 +30,7 @@ export default class NewsList extends Vue {
   <n-list>
     <n-list-item v-for="item in newsData" :key="item.title">
       <div>
-        <a href="/">{{ item.title }}</a>
+        <router-link :to="'/news/'+item.id">{{ item.title }}</router-link>
       </div>
     </n-list-item>
   </n-list>
