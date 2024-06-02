@@ -1,4 +1,4 @@
-package com.waylau.springboot.com.waylau.springboot.newsserver.controller;
+package com.waylau.springboot.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
