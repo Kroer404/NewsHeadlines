@@ -6,7 +6,7 @@ export default class Admin extends Vue {
   //初始化后端数据
   public adminData:string="";
   //接口地址
-  private apiURL:string="http://localhost:8080/admins/hi";
+  private apiURL:string="/api/admins/hi";
 
   mounted(){
     this.getData();
@@ -15,6 +15,7 @@ export default class Admin extends Vue {
   getData(){
     axios
         .get(this.apiURL)
+        // .catch((apiURL) => console.log(apiURL))
         .then(response => (this.adminData = response.data))
         .catch((error) => console.log(error));
   }

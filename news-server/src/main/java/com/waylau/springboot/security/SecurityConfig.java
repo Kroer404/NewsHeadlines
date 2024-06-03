@@ -9,30 +9,41 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
 
+
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests((authz) -> authz
-                        //所有请求都不要认证，未实现
-                        .requestMatchers("/**").permitAll()
-                        //所有请求都需要认证
+                .authorizeHttpRequests(auth -> auth
+                        //所有请求都不要认证
+                        //问题：现在仅允许访问admins/hi（无论是否登录），但是访问其他路径时会报错403
+                        .requestMatchers(passPath).permitAll()
+                        //余下所有请求都需要认证
                         .anyRequest().authenticated()
-                )
-                //启用http基本身份验证
-                .httpBasic(withDefaults());
+
+                );
+                //手动定义login页面
+                //.formLogin(form -> form
+                //.loginPage("/login")
+                //);
+
+                //启用http基本身份验证,启用后似乎会拦截所有请求，所以默认禁用
+                //.httpBasic(Customizer.withDefaults());
         http
                 //禁用csrf
                 .csrf(csrf -> csrf.disable());
         return http.build();
     }
 
+    //不需要认证放行的路径
+    String[] passPath = {"/admins/hi","/news/**"};
 
+
+    //用户信息服务
     @Bean
     UserDetailsService userDetailsService() {
         InMemoryUserDetailsManager users = new InMemoryUserDetailsManager();

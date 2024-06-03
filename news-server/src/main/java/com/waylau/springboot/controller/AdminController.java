@@ -9,6 +9,11 @@ public class AdminController {
 
     @RequestMapping("/hi")
     public String list() {
-        return "Hello, admin!";
+        return "Hi, admin!";
+    }
+
+    @RequestMapping("/hi2")
+    public String list2() {
+        return "Hello, 222!";
     }
 }
