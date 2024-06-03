@@ -13,10 +13,17 @@ const routes: Array<any> = [
         component: () =>
             import('.//components/NewsDetail.vue'),
     },
+    {
+        path: '/admin',
+        name: 'Admin',
+        component: () =>
+            import('.//components/Admin.vue'),
+    },
 ];
 const router = createRouter({
     history: createWebHashHistory(),
     routes
 })
+
 
 export default router;
