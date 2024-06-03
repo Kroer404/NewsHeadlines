@@ -1,4 +1,4 @@
-package com.waylau.springboot.security;
+package com.waylau.springboot.newsserver.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

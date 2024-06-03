@@ -1,6 +1,8 @@
-package com.waylau.springboot.controller;
+package com.waylau.springboot.newsserver.controller;
 
+import com.waylau.springboot.newsserver.domain.News;
 import com.waylau.springboot.newsserver.repository.NewsRepository;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,13 +22,9 @@ public class NewsController {
     public List<News> getNewsList() {
         Iterable<News> newsIterable = newsRepository.findAll();
         List<News> newsList = new ArrayList<>();
-
         newsIterable.forEach(news ->{
             newsList.add(news);
-
         });
-
-
         return newsList;
     }
 
