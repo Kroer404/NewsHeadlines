@@ -1,28 +1,64 @@
 <script lang="ts">
 import {Options, Vue} from "vue-class-component"
 import {NButton, NCard} from 'naive-ui'
+import {News} from "@/news";
+import axios from "axios";
+import MdEditor from 'md-editor-v3';
 
 @Options({
   components: {
     NButton,
     NCard,
+    MdEditor,
   },
 })
 
 export default class NewsDetail extends Vue {
+
+  //初始化详情页数据
+  public newsDetailResult: News = new News("", "", new Date());
+
+  //详情页接口地址
+  private newsApiUrl: string = "/api/news/";
+
+  //初始化详情主键
+  private newsId: string = ""
+
+  mounted() {
+    this.getData();
+  }
+
+  getData() {
+    // 路由参数不是直接在 $router 对象上，而是在 $route 对象的 params 属性中
+    this.newsId = this.$route.params.id.toString();
+    console.log("获取到的id是：" + this.newsId)
+    axios
+        .get<News>(this.newsApiUrl + this.newsId)
+        .then((response) => {
+          this.newsDetailResult = response.data;
+          console.log("获取到的新闻实体是：", this.newsDetailResult)
+        })
+        .catch((err) => console.log(err));
+  }
+
   goBack() {
     this.$router.go(-1)
   }
+
+
 }
 </script>
 
 <template>
   <div class="news-detail">
     <n-button @click="goBack()">Back</n-button>
-    <n-card :bordered="false" embedded title="111">
-      <p>这里写的就应该是内容，现在写的是死数据，你再想想怎么调用他咯</p>
+    <n-card :bordered="false" :title="newsDetailResult.title" embedded>
+      <!--问题：为什么如果是私有类不能在这里访问，即使是同文件下-->
+      <p>{{ newsDetailResult.creation }}</p>
+      <p>{{ newsDetailResult.content }}</p>
+      <!--问题：组件已成功获取内容，但未正确显示-->
+      <md-editor v-model="newsDetailResult.content" previewOnly="true"/>
       <img alt="" src="https://pic2.zhimg.com/v2-c58eeefdc30415e904375d70d45c5209_b.jpg"/>
-
     </n-card>
   </div>
 </template>
