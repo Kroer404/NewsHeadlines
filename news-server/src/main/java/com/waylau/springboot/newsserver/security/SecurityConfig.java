@@ -21,6 +21,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         //所有请求都不要认证
                         //问题：现在仅允许访问admins/hi（无论是否登录），但是访问其他路径时会报错403
+                        //新问题:无法访问/login
                         .requestMatchers(passPath).permitAll()
                         //余下所有请求都需要认证
                         .anyRequest().authenticated()
@@ -40,7 +41,7 @@ public class SecurityConfig {
     }
 
     //不需要认证放行的路径
-    //问题：通配符似乎识别异常，“*” 严格匹配一个字符
+    //问题：通配符似乎识别异常，“*” 只能严格匹配一个字符
     String[] passPath = {"/admins/hi","/news/**","/news/*"};
 
 
