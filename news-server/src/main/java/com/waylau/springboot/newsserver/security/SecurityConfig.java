@@ -40,7 +40,8 @@ public class SecurityConfig {
     }
 
     //不需要认证放行的路径
-    String[] passPath = {"/admins/hi","/news/**"};
+    //问题：通配符似乎识别异常，“*” 严格匹配一个字符
+    String[] passPath = {"/admins/hi","/news/**","/news/*"};
 
 
     //用户信息服务
