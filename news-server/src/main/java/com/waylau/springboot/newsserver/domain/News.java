@@ -18,7 +18,7 @@ public class News {
     private String content;
     private Date creation;
 
-    protected News() { // 无参构造函数；设为 protected 防止直接使用
+    public News() { // 无参构造函数；设为 protected 防止直接使用
     }
 
     public News(String title, String content, Date creation) {
