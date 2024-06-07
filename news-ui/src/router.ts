@@ -19,6 +19,12 @@ const routes: Array<any> = [
         component: () =>
             import('.//components/Admin.vue'),
     },
+    {
+        path:'/login',
+        name:'Login',
+        component:() =>
+            import('.//components/Login.vue'),
+    }
 ];
 const router = createRouter({
     history: createWebHashHistory(),

@@ -35,6 +35,12 @@ export default class NewsList extends Vue {
 </script>
 
 <template>
+  <n-button>
+    <router-link :to="'/login'">Login</router-link>
+  </n-button>
+  <div>
+    <router-link :to="'/admin'">试试访问权限接口</router-link>
+  </div>
   <n-list>
     <!--这里可以正常获取列表，报错原因未知-->
     <n-list-item v-for="item in newsData" :key="item.title">
