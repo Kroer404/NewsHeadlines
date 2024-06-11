@@ -39,14 +39,16 @@ public class SecurityConfig {
                         .successHandler(new AuthenticationSuccessHandler() {
                             @Override
                             public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-                                response.setContentType("application/json;charset=utf-8");
+                                System.out.println("激活登录成功处理器");
+                                response.setContentType("text/html;charset=utf-8");
                                 response.getWriter().write("loginSuccess");
                             }
                         })
                         .failureHandler(new AuthenticationFailureHandler() {
                             @Override
                             public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-                                response.setContentType("application/json;charset=utf-8");
+                                System.out.println("激活登录失败处理器");
+                                response.setContentType("text/html;charset=utf-8");
                                 response.getWriter().write("loginError");
                                 System.out.println("登录失败信息");
                                 exception.printStackTrace();
