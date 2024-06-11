@@ -1,5 +1,5 @@
 import {createRouter, createWebHashHistory} from 'vue-router'
-import NewsList from ".//components/NewsList.vue";
+import NewsList from "./components/News/NewsList.vue";
 
 const routes: Array<any> = [
     {
@@ -11,19 +11,19 @@ const routes: Array<any> = [
         path: '/news/:id',
         name: 'NewsDetail',
         component: () =>
-            import('.//components/NewsDetail.vue'),
+            import('./components/News/NewsDetail.vue'),
     },
     {
         path: '/admin',
         name: 'Admin',
         component: () =>
-            import('.//components/Admin.vue'),
+            import('./components/Develop/Admin.vue'),
     },
     {
         path:'/login',
         name:'Login',
         component:() =>
-            import('.//components/Login.vue'),
+            import('./components/User/Login.vue'),
     }
 ];
 const router = createRouter({
