@@ -1,4 +1,4 @@
-package com.waylau.springboot.newsserver.controller;
+package com.example.demo.controller;
 
 
 import org.springframework.stereotype.Controller;

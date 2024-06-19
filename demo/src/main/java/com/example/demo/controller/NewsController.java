@@ -1,7 +1,7 @@
-package com.waylau.springboot.newsserver.controller;
+package com.example.demo.controller;
 
-import com.waylau.springboot.newsserver.domain.News;
-import com.waylau.springboot.newsserver.repository.NewsRepository;
+import com.example.demo.domain.News;
+import com.example.demo.repository.NewsRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -4,9 +4,11 @@ import {NButton, NCard} from 'naive-ui'
 import {News} from "@/news";
 import axios from "axios";
 import MdEditor from 'md-editor-v3';
+import HeadBar from "/src/components/Public/HeadBar.vue";
 
 @Options({
   components: {
+    HeadBar,
     NButton,
     NCard,
     MdEditor,
@@ -44,21 +46,18 @@ export default class NewsDetail extends Vue {
   goBack() {
     this.$router.go(-1)
   }
-
-
 }
 </script>
 
 <template>
+  <head-bar></head-bar>
   <div class="news-detail">
     <n-button @click="goBack()">Back</n-button>
     <n-card :bordered="false" :title="newsDetailResult.title" embedded>
       <!--问题：为什么如果是私有类不能在这里访问，即使是同文件下-->
       <p>{{ newsDetailResult.creation }}</p>
-      <p>{{ newsDetailResult.content }}</p>
+      <div v-html="newsDetailResult.content"></div>
       <!--问题：组件已成功获取内容，但未正确显示-->
-      <md-editor v-model="newsDetailResult.content" previewOnly="true"/>
-      <img alt="" src="https://pic2.zhimg.com/v2-c58eeefdc30415e904375d70d45c5209_b.jpg"/>
     </n-card>
   </div>
 </template>

@@ -7,10 +7,11 @@
 <script lang="ts">
 import {Vue} from 'vue-class-component';
 import {NButton} from 'naive-ui'
-import NewsList from "@/components/News/NewsList.vue";
-import NewsDetail from "@/components/News/NewsDetail.vue";
+import NewsList from "@/page/News/NewsList.vue";
+import NewsDetail from "@/page/News/NewsDetail.vue";
 
 export default class App extends Vue {
+
 }
 
 

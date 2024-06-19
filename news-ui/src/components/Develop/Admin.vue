@@ -23,6 +23,7 @@ export default class Admin extends Vue {
 </script>
 
 <template>
+  <head-bar></head-bar>
   <p>Get data from admin:{{ adminData }}</p>
 </template>
 

@@ -30,7 +30,8 @@ public class SecurityConfig {
                                         .requestMatchers(userPassPath).hasAnyRole("USER")
                                         .requestMatchers(adminPassPath).hasAnyRole("ADMIN")
                                         .anyRequest().authenticated()
-                );
+                )
+                .httpBasic(Customizer.withDefaults());
 
         http.formLogin(formLogin ->
                 formLogin
@@ -68,7 +69,7 @@ public class SecurityConfig {
     }
 
     //放行接口
-    String[] allPassPath = {"/login","/news","/news/**"};
+    String[] allPassPath = {"/login","/news","/news/**","/admins/hi"};
 
     //用户权限允许访问的接口
     String[] userPassPath = {};

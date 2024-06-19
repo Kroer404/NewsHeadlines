@@ -1,17 +1,17 @@
 import {createRouter, createWebHashHistory} from 'vue-router'
-import NewsList from "./components/News/NewsList.vue";
 
 const routes: Array<any> = [
     {
         path: '/',
         name: 'NewsList',
-        component: NewsList,
+        component: () =>
+            import('@/page/News/NewsList.vue'),
     },
     {
         path: '/news/:id',
         name: 'NewsDetail',
         component: () =>
-            import('./components/News/NewsDetail.vue'),
+            import('@/page/News/NewsDetail.vue'),
     },
     {
         path: '/admin',
@@ -23,7 +23,19 @@ const routes: Array<any> = [
         path:'/login',
         name:'Login',
         component:() =>
-            import('./components/User/Login.vue'),
+            import('@/page/User/Login.vue'),
+    },
+    {
+        path:'/Index',
+        name:'UserIndex',
+        component:() =>
+            import('@/page/User/Index.vue'),
+    },
+    {
+        path:'/register',
+        name:'UserRegister',
+        component:() =>
+            import('@/page/User/Register.vue'),
     }
 ];
 const router = createRouter({
