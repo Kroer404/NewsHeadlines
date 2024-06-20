@@ -40,15 +40,15 @@ public class NewsController {
     @PostMapping("/add")
     public News addNews(
             @RequestParam String title,
-            @RequestParam String content
-//            @RequestParam String creation
+            @RequestParam String content,
+            @RequestParam String creation
 
     ) {
         //使用CrudRepository的save方法，保存新闻
         News news = new News();
         news.setTitle(title);
         news.setContent(content);
-//        news.setCreation(creation);
+        news.setCreation(creation);
          this.newsRepository.save(news);
          return null;
     }
@@ -59,8 +59,8 @@ public class NewsController {
     public News updateNews(
             @PathVariable Long newsId,
             @RequestParam String title,
-            @RequestParam String content
-//            @RequestParam String creation
+            @RequestParam String content,
+            @RequestParam String creation
     ) {
         Optional<News> n = this.newsRepository.findById(newsId);
         News News = n.orElse(null);
@@ -70,7 +70,7 @@ public class NewsController {
         News news = new News();
         news.setTitle(title);
         news.setContent(content);
-//        news.setCreation(creation);
+        news.setCreation(creation);
         this.newsRepository.save(News);
         return null;
 

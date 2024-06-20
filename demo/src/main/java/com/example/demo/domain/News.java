@@ -16,12 +16,12 @@ public class News {
     private Long newsId; // 实体一个唯一标识
     private String title;
     private String content;
-    private Date creation;
+    private String creation;
 
     public News() { // 无参构造函数；设为 protected 防止直接使用
     }
 
-    public News(String title, String content, Date creation) {
+    public News(String title, String content, String creation) {
         this.title = title;
         this.content = content;
         this.creation = creation;
@@ -51,11 +51,11 @@ public class News {
         this.content = content;
     }
 
-    public Date getCreation() {
+    public String getCreation() {
         return creation;
     }
 
-    public void setCreation(Date creation) {
+    public void setCreation(String creation) {
         this.creation = creation;
     }
 

@@ -1,15 +1,15 @@
 <script lang="ts">
 import '@wangeditor/editor/dist/css/style.css' // 引入 css
-import { onBeforeUnmount, ref, shallowRef, onMounted} from 'vue'
-import { useRouter } from 'vue-router'
-import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
+import {onBeforeUnmount, ref, shallowRef, onMounted} from 'vue'
+import {useRouter} from 'vue-router'
+import {Editor, Toolbar} from '@wangeditor/editor-for-vue'
 import axios from 'axios'
 
 
 export default {
-  components: { Editor, Toolbar },
+  components: {Editor, Toolbar},
   setup() {
-
+    const title = ref<string>('');
     const router = useRouter()
     // 编辑器实例，必须用 shallowRef
     const editorRef = shallowRef()
@@ -25,7 +25,7 @@ export default {
     })
 
     const toolbarConfig = {}
-    const editorConfig = { placeholder: '请输入内容...' }
+    const editorConfig = {placeholder: '请输入内容...'}
 
     // 组件销毁时，也及时销毁编辑器
     onBeforeUnmount(() => {
@@ -39,17 +39,22 @@ export default {
     }
 
     const submitContent = () => {
+      console.log("title的值是：", title.value)
       const editor = editorRef.value
       let htmlContent = editor.getHtml()
+      let posttitle = title.value
       if (editor == null) return
-      console.log(htmlContent)
+
+      // 获取当前时间并直接向后端提交
+      let creation = new Date().toLocaleString("zh-CN", {timeZone: "Asia/Shanghai"}).slice(0, 19).replace('T', ' ');
 
       // 打包请求
       let options = {
         url: '/api/news/add',
         data: {
-          title: '新闻标题',
-          content: htmlContent
+          title: posttitle,
+          content: htmlContent,
+          creation: creation
         },
         method: 'POST',
         headers: {
@@ -59,14 +64,16 @@ export default {
 
       // 发送请求到后端的/add接口
       axios(options).then((res: any) => {
+        console.log("提交的标题是：", posttitle)
+        console.log("提交的创建时间是：", creation)
+        console.log("提交的内容是：", htmlContent)
         console.log(options)
         console.log(res);
       })
 
 
-
       // 重定向到一个命名的路由
-      router.push({ name: 'NewsList' });
+      router.push({name: 'NewsList'});
 
     }
 
@@ -77,33 +84,44 @@ export default {
       toolbarConfig,
       editorConfig,
       handleCreated,
-      submitContent
+      submitContent,
+      title
     };
   },
-
-
 
 
 }
 </script>
 
 <template>
-  <div style="border: 1px solid #ccc">
-    <Toolbar
-        style="border-bottom: 1px solid #ccc"
-        :editor="editorRef"
-        :defaultConfig="toolbarConfig"
-        :mode="mode"
-    />
-    <Editor
-        style="height: 500px; overflow-y: hidden;"
-        v-model="valueHtml"
-        :defaultConfig="editorConfig"
-        :mode="mode"
-        @onCreated="handleCreated"
-    />
+  <div class="edit-background">
+    <div class="title-edit">
+      <a-space direction="vertical">
+        <!--a-input使用不不同于vue原本的方式绑定v-model-->
+        <a-input v-model:value="title" placeholder="输入新闻标题"/>
+      </a-space>
+    </div>
+    <div class="content-edit">
+      <div style="border: 1px solid #ccc">
+        <Toolbar
+            :defaultConfig="toolbarConfig"
+            :editor="editorRef"
+            :mode="mode"
+            style="border-bottom: 1px solid #ccc"
+        />
+        <Editor
+            v-model="valueHtml"
+            :defaultConfig="editorConfig"
+            :mode="mode"
+            style="height: 500px; overflow-y: hidden;"
+            @onCreated="handleCreated"
+        />
+      </div>
+    </div>
+    <a-button type="primary" @click="submitContent">提交</a-button>
   </div>
-  <a-button type="primary" @click="submitContent">提交</a-button>
+
+
 </template>
 
 <style scoped>
