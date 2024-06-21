@@ -15,17 +15,17 @@ export default {
     const editorRef = shallowRef()
 
     // 内容 HTML
-    const valueHtml = ref('<p>hello</p>')
+    const valueHtml = ref('<p></p>')
 
     // 模拟 ajax 异步获取内容
     onMounted(() => {
       setTimeout(() => {
-        valueHtml.value = '<p>在这里开始编写新闻内容</p>'
+        valueHtml.value = '<p></p>'
       }, 1500)
     })
 
     const toolbarConfig = {}
-    const editorConfig = {placeholder: '请输入内容...'}
+    const editorConfig = {placeholder: '在这里开始编写新闻内容...'}
 
     // 组件销毁时，也及时销毁编辑器
     onBeforeUnmount(() => {
@@ -34,7 +34,7 @@ export default {
       editor.destroy()
     })
 
-    const handleCreated = (editor) => {
+    const handleCreated = (editor: any) => {
       editorRef.value = editor // 记录 editor 实例，重要！
     }
 
@@ -94,6 +94,7 @@ export default {
 </script>
 
 <template>
+  这里是新增新闻模块
   <div class="edit-background">
     <div class="title-edit">
       <a-space direction="vertical">

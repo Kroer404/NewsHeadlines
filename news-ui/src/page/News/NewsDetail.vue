@@ -1,17 +1,14 @@
 <script lang="ts">
 import {Options, Vue} from "vue-class-component"
-import {NButton, NCard} from 'naive-ui'
 import {News} from "@/news";
 import axios from "axios";
-import MdEditor from 'md-editor-v3';
 import HeadBar from "/src/components/Public/HeadBar.vue";
+import ButtomBar from "@/components/Public/ButtomBar.vue";
 
 @Options({
   components: {
+    ButtomBar,
     HeadBar,
-    NButton,
-    NCard,
-    MdEditor,
   },
 })
 
@@ -44,10 +41,6 @@ export default class NewsDetail extends Vue {
         })
         .catch((err) => console.log(err));
   }
-
-  goBack() {
-    this.$router.go(-1)
-  }
 }
 </script>
 
@@ -55,7 +48,7 @@ export default class NewsDetail extends Vue {
   <head-bar></head-bar>
   <div class="news-detail">
     <div>
-      <span>{{ newsDetailResult.title }}</span>
+      <h2>{{ newsDetailResult.title }}</h2>
     </div>
     <a-card :bordered="false" embedded class="content">
       <!--问题：为什么如果是私有类不能在这里访问，即使是同文件下-->
@@ -64,6 +57,7 @@ export default class NewsDetail extends Vue {
       <!--问题：组件已成功获取内容，但未正确显示-->
     </a-card>
   </div>
+  <buttom-bar></buttom-bar>
 </template>
 
 <style scoped>
