@@ -3,6 +3,7 @@
 </script>
 
 <template>
+  <a-divider style="border-color: #7cb305" dashed />
   <div class="buttombar-background">
     <div class="buttombar">
       <p>版权没有，随便翻录</p>
@@ -29,16 +30,15 @@
 
 <style scoped>
 .buttombar-background{
-  height: 80px;
+  width: 100%;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .buttombar {
-  width: 100%;
   display: flex;
-  background-color: brown;
   height: 50px;
 }
 

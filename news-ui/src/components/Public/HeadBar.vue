@@ -5,16 +5,13 @@
 <template>
   <div class="hearbar-background">
     <div class="headbar">
-      <router-link class="logo" to="/"><img class="logo-img" src="/img/home.png"></router-link>
-      <router-link :to="'/admin'">
-        <img src="">
-        <br>
-        <span>权限接口</span>
+      <router-link class="logo" to="/">
+        <img class="logo-img" src="/img/home.png">
       </router-link>
       <router-link to="/Index">
-        <img src="">
+        <img class="login-img" src="/img/user.png">
         <br>
-        <span>用户信息</span>
+        <span>面板</span>
       </router-link>
       <router-link class="nav-link" to="/login">
         <img class="login-img" src="/img/Login.svg">
@@ -31,8 +28,8 @@
 </template>
 
 <style scoped>
-.hearbar-background{
-  height: 80px;
+.hearbar-background {
+  height: 70px;
 }
 
 .headbar {
@@ -67,5 +64,10 @@
 
 .nav-link {
   margin-left: 20px;
+}
+
+a{
+  text-decoration:none;
+  color:#333;
 }
 </style>

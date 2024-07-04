@@ -5,14 +5,13 @@ import NewsChoose from "@/components/News/NewsChoose.vue";
 
 
 export default {
-  components: {NewsChoose, NewsCreate},
+  components: {NewsChoose},
 
 
 }
 </script>
 
 <template>
-  <news-create></news-create>
   <news-choose></news-choose>
 </template>
 

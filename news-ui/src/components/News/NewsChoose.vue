@@ -44,28 +44,33 @@ export default defineComponent({
         this.getData();
       })
     },
+    editNews(newsId: string) {
+      this.$router.push({name: 'NewsEdit', params: {newsId: newsId}});
+    }
   },
 });
 </script>
 
 <template>
-  这里是选择新闻模块
   <div class="news-list-page-background">
     <div class="news-list-page">
       <div class="news-list">
         <a-list item-layout="horizontal">
           <a-list-item v-for="item in newsData" :key="item.title">
-            <a-list-item-meta description="这里是小标题">
+            <a-list-item-meta>
               <template #title>
                 <router-link :to="'/news/'+item.newsId">{{ item.title }}</router-link>
               </template>
               <template #avatar>
                 <a-avatar src="/img/logo.png"/>
               </template>
+              <template #description>
+                {{ item.creation }}
+              </template>
             </a-list-item-meta>
             <a-button danger @click="deleteNews(item.newsId)">删除</a-button>
             <div style="width: 10px"></div>
-            <a-button type="primary">编辑</a-button>
+            <a-button type="primary" @click="editNews(item.newsId)">编辑</a-button>
           </a-list-item>
         </a-list>
       </div>

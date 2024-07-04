@@ -48,14 +48,17 @@ export default class NewsDetail extends Vue {
   <head-bar></head-bar>
   <div class="news-detail">
     <div>
-      <h2>{{ newsDetailResult.title }}</h2>
+      <h1>{{ newsDetailResult.title }}</h1>
     </div>
-    <a-card :bordered="false" embedded class="content">
-      <!--问题：为什么如果是私有类不能在这里访问，即使是同文件下-->
-      <p>发布时间：{{ newsDetailResult.creation }}</p>
-      <div v-html="newsDetailResult.content"></div>
-      <!--问题：组件已成功获取内容，但未正确显示-->
-    </a-card>
+    <br>
+    <div class="news-content">
+      <a-card :bordered="false" embedded class="content">
+        <!--问题：为什么如果是私有类不能在这里访问，即使是同文件下-->
+        <p>发布时间：{{ newsDetailResult.creation }}</p>
+        <div v-html="newsDetailResult.content"></div>
+        <!--问题：组件已成功获取内容，但未正确显示-->
+      </a-card>
+    </div>
   </div>
   <buttom-bar></buttom-bar>
 </template>
@@ -63,5 +66,19 @@ export default class NewsDetail extends Vue {
 <style scoped>
 .content{
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.news-detail{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.news-content{
+  width: 65%;
+
+
 }
 </style>

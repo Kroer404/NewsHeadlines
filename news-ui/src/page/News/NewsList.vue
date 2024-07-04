@@ -4,10 +4,12 @@ import {defineComponent} from 'vue'
 import axios from "axios";
 import {News} from "@/news";
 import SideBar from "@/components/Public/SideBar.vue";
+import ButtomBar from "@/components/Public/ButtomBar.vue";
 
 
 export default defineComponent({
   components: {
+    ButtomBar,
     SideBar,
     HeadBar,
   },
@@ -36,19 +38,53 @@ export default defineComponent({
 <template>
   <head-bar></head-bar>
   <div class="news-list-page-background">
+    <h3 class="title-text">热点新闻</h3>
+    <a-divider style="height: 1px; background-color: black" />
     <div class="news-list-page">
       <div class="sidebar">
         <side-bar></side-bar>
       </div>
       <div class="news-list">
+
         <a-list item-layout="horizontal">
+          <div class="carousel">
+            <a-carousel autoplay>
+              <div>
+                <router-link to="/news/35">
+                  <img src="/img/1.jpg">
+                  <h3>ttttt</h3>
+                </router-link>
+              </div>
+              <div>
+                <router-link to="/news/36">
+                  <img src="/img/2.jpg">
+                  <h3>ttttt</h3>
+                </router-link>
+              </div>
+              <div>
+                <router-link to="/news/37">
+                  <img src="/img/3.jpg">
+                  <h3>ttttt</h3>
+                </router-link>
+              </div>
+              <div>
+                <router-link to="/news/38">
+                  <img src="/img/4.jpg">
+                  <h3>ttttt</h3>
+                </router-link>
+              </div>
+            </a-carousel>
+          </div>
           <a-list-item v-for="item in newsData" :key="item.title">
-            <a-list-item-meta description="这里是小标题">
+            <a-list-item-meta>
               <template #title>
                 <router-link :to="'/news/'+item.newsId">{{ item.title }}</router-link>
               </template>
               <template #avatar>
                 <a-avatar src="/img/logo.png"/>
+              </template>
+              <template #description>
+                {{ item.creation }}
               </template>
             </a-list-item-meta>
           </a-list-item>
@@ -56,7 +92,7 @@ export default defineComponent({
       </div>
     </div>
   </div>
-
+  <buttom-bar></buttom-bar>
 </template>
 
 <style scoped>
@@ -66,6 +102,11 @@ export default defineComponent({
   margin: auto;
 }
 
+.news-list-page-background {
+
+
+}
+
 .sidebar {
   flex: 0 0 20%;
 }
@@ -73,4 +114,34 @@ export default defineComponent({
 .news-list {
   flex: 0 0 66.67%;
 }
+
+/* For demo */
+:deep(.slick-slide) {
+  text-align: center;
+  height: 300px;
+  line-height: 100px;
+  background: #364d79;
+  overflow: hidden;
+}
+
+:deep(.slick-slide h3) {
+  color: #fff;
+}
+
+.carousel {
+  width: 600px;
+  margin-left: 20px;
+}
+
+.title-text{
+  text-align: left;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  color: black;
+}
+
+
 </style>

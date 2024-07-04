@@ -14,6 +14,12 @@ const routes: Array<any> = [
             import('@/page/News/NewsDetail.vue'),
     },
     {
+        path: '/news-edit',
+        name: 'NewsEdit',
+        component: () =>
+            import('@/page/News/NewsEdit.vue'),
+    },
+    {
         path: '/admin',
         name: 'Admin',
         component: () =>
@@ -29,7 +35,7 @@ const routes: Array<any> = [
         path:'/Index',
         name:'UserIndex',
         component:() =>
-            import('@/page/User/Index.vue'),
+            import('@/page/User/UserIndex.vue'),
     },
     {
         path:'/register',

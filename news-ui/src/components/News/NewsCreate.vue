@@ -94,13 +94,14 @@ export default {
 </script>
 
 <template>
-  这里是新增新闻模块
   <div class="edit-background">
     <div class="title-edit">
       <a-space direction="vertical">
         <!--a-input使用不不同于vue原本的方式绑定v-model-->
         <a-input v-model:value="title" placeholder="输入新闻标题"/>
       </a-space>
+      <br>
+      <br>
     </div>
     <div class="content-edit">
       <div style="border: 1px solid #ccc">
@@ -119,6 +120,7 @@ export default {
         />
       </div>
     </div>
+    <br>
     <a-button type="primary" @click="submitContent">提交</a-button>
   </div>
 
