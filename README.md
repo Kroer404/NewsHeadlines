@@ -2,3 +2,5 @@
 
 news-ui为前端
 news-server为后端，使用Java编写
+
+项目地址：https://github.com/Kroer404/NewsHeadlines
